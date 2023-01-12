@@ -24,7 +24,17 @@
 		with us!
 	</p>
 	<section class="">
-		<h1 class="">⏰ Timeline</h1>
+		<h2 class="heading-level-2">⏰ Timeline</h2>
+		<ul class="list">
+			{#each posts as post}
+				<li class="list-item">
+					<span class="icon-arrow-circle-right" aria-hidden="true" />
+					<a class="" href={`/${post.slug}`}>
+						<span class="text">{post.title}</span>
+					</a>
+				</li>
+			{/each}
+		</ul>
 	</section>
 </section>
 
@@ -38,5 +48,9 @@
 	}
 	.main-section p {
 		max-width: 48rem;
+	}
+	.list {
+		display: grid;
+		gap: 2rem;
 	}
 </style>
