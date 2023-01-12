@@ -1,6 +1,6 @@
 ---
 day: 28
-title: "#30DaysOfAppwrite: Docker Swarm Integration"
+title: "Docker Swarm Integration"
 description: "The fiercest of enemies may be overcome by a swarm."
 slug: "docker-swarm-integration"
 devto_url: "https://dev.to/appwrite/30daysofappwrite-docker-swarm-integration-2io9"

@@ -1,6 +1,6 @@
 ---
 day: 6
-title: "#30DaysofAppwrite: SSL Certificates"
+title: "SSL Certificates"
 description: "SSL can be a bummer - here are some tips."
 slug: "ssl-certificates"
 devto_url: "https://dev.to/appwrite/30daysofappwrite-ssl-certificates-c08"

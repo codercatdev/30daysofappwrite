@@ -1,6 +1,6 @@
 ---
 day: 29
-title: "#30DaysOfAppwrite: Grafana Integration"
+title: "Grafana Integration"
 description: "In God we trust. Everyone else must bring data."
 slug: "grafana-integration"
 devto_url: "https://dev.to/appwrite/grafana-integration-50p9"
