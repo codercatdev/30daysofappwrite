@@ -1,0 +1,143 @@
+<script>
+	import { onMount } from 'svelte';
+
+	onMount(async () => {
+		const menuButton = document.querySelector('#menuButton');
+		const main = document.querySelector('#main');
+		const nav = document.querySelector('#nav');
+
+		const toggleDrawer = () => {
+			main?.classList.toggle('is-open');
+			nav?.classList.toggle('nav-top');
+		};
+		menuButton?.addEventListener('click', toggleDrawer);
+		return () => menuButton?.removeEventListener('click', toggleDrawer);
+	});
+</script>
+
+<nav id="nav" class="main-side">
+	<div class="side-nav">
+		<div class="side-nav-main">
+			<section class="drop-section">
+				<ul class="drop-list">
+					<li class="drop-list-item">
+						<a class="drop-button is-selected" href="/">
+							<span class="icon-chart-bar" aria-hidden="true" />
+							<span class="text">Home</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="">
+							<span class="icon-database" aria-hidden="true" />
+							<span class="text">Database</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="/settings.html">
+							<span class="icon-folder" aria-hidden="true" />
+							<span class="text">Storage</span>
+						</a>
+					</li>
+
+					<li class="drop-list-item">
+						<a class="drop-button" href="/users.html">
+							<span class="icon-user-group" aria-hidden="true" />
+							<span class="text">Users</span>
+						</a>
+					</li>
+
+					<li class="drop-list-item">
+						<a class="drop-button" href="">
+							<span class="icon-lightning-bolt" aria-hidden="true" />
+							<span class="text">Functions</span>
+						</a>
+					</li>
+				</ul>
+				<p style="margin-top: 1rem;">DEMOS</p>
+				<ul class="drop-list">
+					<li class="drop-list-item">
+						<a class="drop-button" href="/users.html">
+							<span class="icon-user-group" aria-hidden="true" />
+							<span class="text">Users</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="/user.html">
+							<span class="icon-user" aria-hidden="true" />
+							<span class="text">User</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="/userSecurity.html">
+							<span class="icon-user" aria-hidden="true" />
+							<span class="text">Security</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="/auth.html">
+							<span class="icon-academic-cap" aria-hidden="true" />
+							<span class="text">Auth</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="/auth2.html">
+							<span class="icon-archive" aria-hidden="true" />
+							<span class="text">Auth2</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="/teamActivity.html">
+							<span class="icon-beaker" aria-hidden="true" />
+							<span class="text">Team Activity</span>
+						</a>
+					</li>
+
+					<li class="drop-list-item">
+						<a class="drop-button" href="/buckets.html">
+							<span class="icon-folder" aria-hidden="true" />
+							<span class="text">Buckets</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="/bucket.html">
+							<span class="icon-folder" aria-hidden="true" />
+							<span class="text">Bucket</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="/bucketSettings.html">
+							<span class="icon-folder" aria-hidden="true" />
+							<span class="text">Bucket Settings</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a class="drop-button" href="/collection.html">
+							<span class="icon-annotation" aria-hidden="true" />
+							<span class="text">Collection</span>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<section class="drop-section u-flex u-flex-vertical is-no-desktop">
+				<button class="button is-text u-main-center u-width-full-line"
+					><span class="text">Feedback</span></button
+				>
+				<button class="button is-text u-main-center u-width-full-line"
+					><span class="text">Support</span></button
+				>
+				<button class="button is-secondary u-main-center u-width-full-line"
+					><span class="text">Upgrade</span></button
+				>
+			</section>
+		</div>
+
+		<div class="side-nav-bottom">
+			<section class="drop-section">
+				<a class="drop-button" href="">
+					<span class="icon-cog" aria-hidden="true" />
+					<span class="text">Settings</span>
+				</a>
+			</section>
+		</div>
+	</div>
+</nav>

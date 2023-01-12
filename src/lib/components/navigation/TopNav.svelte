@@ -10,4 +10,14 @@
 			<li class="breadcrumbs-item"><a href="/" aria-level={1}>Home</a></li>
 		</ol>
 	</nav>
+	<div class="main-header-end">
+		<nav class="u-flex u-gap-12">
+			<div class="drop-wrapper">
+				<a href="https://appwrite.io" class="button is-text is-only-desktop">
+					<span class="text">Back to Appwrite</span>
+					<span class="icon-external-link" aria-hidden="true" />
+				</a>
+			</div>
+		</nav>
+	</div>
 </header>
