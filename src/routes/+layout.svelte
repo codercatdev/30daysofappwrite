@@ -1,4 +1,5 @@
 <script>
+	import '../app.postcss';
 	import '@aw-labs/ui/dist/appwrite.css';
 	import '@aw-labs/icons/dist/icon.css';
 	import TopNav from '$lib/components/navigation/TopNav.svelte';

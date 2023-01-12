@@ -5,7 +5,7 @@
 	console.log(posts);
 </script>
 
-<section class="main-section">
+<section class="grid items-center justify-center h-full gap-1 justify-items-center">
 	<img
 		src="/images/logo.989bc816.png"
 		alt="Person riding rocket into clouds"
@@ -13,7 +13,7 @@
 		height="320"
 	/>
 	<h1 class="heading-level-1">30 Days of Appwrite</h1>
-	<p>
+	<p class="max-w-3xl">
 		#30DaysOfAppwrite is a month long event focussed at giving developers a walkthrough of all of
 		<a class="link" href="https://appwrite.io">
 			<span class="text">Appwrite's</span>
@@ -23,7 +23,7 @@
 		when building a real world app. We also have some exciting prizes for developers who follow along
 		with us!
 	</p>
-	<section class="">
+	<section class="m-2">
 		<h2 class="heading-level-2">⏰ Timeline</h2>
 		<ul class="list">
 			{#each posts as post}
@@ -39,16 +39,6 @@
 </section>
 
 <style>
-	.main-section {
-		display: grid;
-		justify-content: center;
-		align-items: center;
-		justify-items: center;
-		height: 100%;
-	}
-	.main-section p {
-		max-width: 48rem;
-	}
 	.list {
 		display: grid;
 		gap: 2rem;
