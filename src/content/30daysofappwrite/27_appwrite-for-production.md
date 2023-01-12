@@ -1,5 +1,5 @@
 ---
-day: 29
+day: 27
 title: "Appwrite for Production"
 description: "Get ready to go to war ⚔️ with Appwrite."
 slug: "appwrite-for-production"

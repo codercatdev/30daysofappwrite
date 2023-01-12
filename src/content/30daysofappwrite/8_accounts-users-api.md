@@ -2,13 +2,13 @@
 day: 8
 title: "Accounts & Users API"
 description: "Learn how to implement users and authorization in your app."
-slug: "30daysofappwrite-accounts-users-api"
+slug: "accounts-users-api"
 devto_url: "https://dev.to/appwrite/30daysofappwrite-accounts-users-api-4592"
 cover_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--u7jL91T2--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/uzz774f9tsnynt6jzr4t.png"
 created_at: "2021-05-08T14:08:41Z"
 updated_at: "2021-05-08T14:08:41Z"
 published_at: "2021-05-08T14:08:41Z"
-tags: ["javascript","webdev","flutter","30daysofappwrite"]s
+tags: ["javascript","webdev","flutter","30daysofappwrite"]
 user:
   name: "Christy Jacob"
   username: "christyjacob4"
@@ -19,6 +19,7 @@ user:
   profile_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--xsn7j9ry--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png"
   profile_image_90: "https://res.cloudinary.com/practicaldev/image/fetch/s--IX4ROHsY--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png"
 ---
+
 ## Intro
 
 [#30DaysOfAppwrite](http://30days.appwrite.io/) is a month-long event focused on giving developers a walkthrough of all of Appwrite's features, starting from the basics to more advanced features like Cloud Functions! Alongside we will also be building a fully-featured Medium clone to demonstrate how these
