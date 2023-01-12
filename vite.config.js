@@ -1,7 +1,11 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { sveltekit } from '@sveltejs/kit/vite';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-});
+/** @type {import('vite').UserConfig} */
+const config = {
+	plugins: [sveltekit()],
+	test: {
+		include: ['src/**/*.{test,spec}.{js,ts}']
+	}
+};
+
+export default config;

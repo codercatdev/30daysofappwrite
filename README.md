@@ -1,42 +1,38 @@
-<br />
-<p align="center">
-    <a href="https://appwrite.io" target="_blank"><img width="260" height="39" src="https://appwrite.io/images/github-logo.png" alt="Appwrite Logo"></a>
-    <br />
-    <br />
-    <img src="public/banner.png"/>
-    <br />
-    <br />
-    <b>Landing page for 30 Days of Appwrite</b>
-</p>
+# create-svelte
 
-[![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
-[![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
-[![Follow Appwrite on StackShare](https://img.shields.io/badge/follow%20on-stackshare-blue?style=flat-square)](https://stackshare.io/appwrite)
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-[#30DaysOfAppwrite](https://30days.appwrite.io/) is a month long event focussed at giving developers a walkthrough of all of Appwrite's features, starting from the basics to more advanced features like Cloud Functions! Alongside, we will also be building a fully featured Medium Clone to demonstrate how these concepts can be applied when building a real world app. We also have some exciting prizes for developers who follow along with us!
+## Creating a project
 
-## Getting Started
-This project was built using Vue.js + Vite. 
+If you're seeing this, you've probably already done this step. Congrats!
 
-1. Clone this repository
-   ```bash
-   git clone https://github.com/appwrite/30dayofappwrite.git
-   cd 30dayofappwrite
-   ```
+```bash
+# create a new project in the current directory
+npm create svelte@latest
 
-1. Change to the folder you wish to use
-   ```bash
-   cd 30dayofappwrite
-   ```
+# create a new project in my-app
+npm create svelte@latest my-app
+```
 
-1. Install the npm packages
-   ```bash
-   npm install
-   ```
+## Developing
 
-1. Run the app!
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
 
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
