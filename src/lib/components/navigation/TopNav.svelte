@@ -44,11 +44,17 @@
 		const dark = document.querySelector('#dark');
 
 		light?.addEventListener('change', function (e) {
+			/**Tailwind*/
+			document.documentElement.classList.remove('dark');
+			/**Appwrite*/
 			body?.classList.remove('theme-dark');
 			darkMode = false;
 			localStorage.setItem('theme', JSON.stringify(darkMode));
 		});
 		dark?.addEventListener('change', function (e) {
+			/**Tailwind*/
+			document.documentElement.classList.add('dark');
+			/**Appwrite*/
 			body?.classList.add('theme-dark');
 			darkMode = true;
 			localStorage.setItem('theme', JSON.stringify(darkMode));

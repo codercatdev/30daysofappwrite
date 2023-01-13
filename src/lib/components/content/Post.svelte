@@ -34,7 +34,7 @@
 			{#if post?.authors}
 				<Authors authors={post.authors} />
 			{/if}
-			<div class="prose lg:prose-xl xl:prose-2xl">
+			<div class="prose dark:prose-invert lg:prose-xl xl:prose-2xl">
 				<svelte:component this={post?.body} />
 			</div>
 		</div>
