@@ -46,7 +46,7 @@
 								class="bg-green-500 flex items-center justify-center flex-shrink-0 w-14 h-14 border-8 border-r-8 rounded-full text-white border-white"
 								data-v-71bf8190=""
 							>
-								{post.day}
+								{post.weight}
 							</div>
 							<span class="text">{post.title}</span>
 						</li>

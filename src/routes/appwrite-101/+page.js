@@ -4,5 +4,5 @@ import { contentTypes } from '$lib/types';
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
-	return { posts: contentlist(contentTypes._30daysofappwrite) };
+	return { posts: contentlist(contentTypes.appwrite101) };
 }

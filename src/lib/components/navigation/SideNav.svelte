@@ -23,8 +23,18 @@
 				<ul class="drop-list">
 					<li class="drop-list-item">
 						<a class="drop-button" class:is-selected={$page.route.id === '/'} href="/">
-							<span class="icon-chart-bar" aria-hidden="true" />
+							<span class="icon-home" aria-hidden="true" />
 							<span class="text">Home</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
+						<a
+							class="drop-button"
+							class:is-selected={$page.route.id === '/appwrite-101'}
+							href="/appwrite-101"
+						>
+							<span class="icon-academic-cap" aria-hidden="true" />
+							<span class="text">Appwrite 101</span>
 						</a>
 					</li>
 					<li class="drop-list-item">
@@ -33,7 +43,7 @@
 							class:is-selected={$page.route.id === '/30daysofappwrite'}
 							href="/30daysofappwrite"
 						>
-							<span class="icon-academic-cap" aria-hidden="true" />
+							<span class="icon-calendar" aria-hidden="true" />
 							<span class="text">30 Days of Appwrite</span>
 						</a>
 					</li>

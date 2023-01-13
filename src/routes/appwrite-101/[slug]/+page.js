@@ -4,6 +4,6 @@ import { contentTypes } from '$lib/types';
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 	const { slug } = params;
-	const single = await contentSingle(slug, contentTypes._30daysofappwrite);
+	const single = await contentSingle(slug, contentTypes.appwrite101);
 	return { ...single };
 }
