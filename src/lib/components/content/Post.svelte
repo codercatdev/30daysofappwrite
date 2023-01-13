@@ -37,6 +37,15 @@
 			<div class="prose dark:prose-invert lg:prose-xl xl:prose-2xl">
 				<svelte:component this={post?.body} />
 			</div>
+			<!-- TODO: Fix State issue -->
+			<div class="flex gap-2 justify-center">
+				{#if prev}
+					<a class="button" href={prev?.slug}>Previous</a>
+				{/if}
+				{#if next}
+					<a class="button" href={next?.slug}>Next</a>
+				{/if}
+			</div>
 		</div>
 	</section>
 {/if}
