@@ -1,29 +1,32 @@
 ---
-day: 18
-title: "Create Blog Posts"
-description: "Allow users to create blog posts in our demo app."
-slug: "create-blog-posts"
-devto_url: "https://dev.to/appwrite/30daysofappwrite-create-blog-posts-31fi"
-cover_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--8jroqjg1--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/705igi7mb6o8c0fa1m46.png"
-created_at: "2021-05-18T13:04:31Z"
-updated_at: "2022-04-12T17:33:43Z"
-published_at: "2021-05-18T13:08:52Z"
-tags: ["javascript","webdev","flutter","30daysofappwrite"]
-user:
-  name: "Christy Jacob"
-  username: "christyjacob4"
-  twitter_username: null
-  github_username: "christyjacob4"
-  user_id: "119691"
-  website_url: null
-  profile_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--xsn7j9ry--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png"
-  profile_image_90: "https://res.cloudinary.com/practicaldev/image/fetch/s--IX4ROHsY--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png"
+weight: 18
+title: 'Create Blog Posts'
+description: 'Allow users to create blog posts in our demo app.'
+slug: 'create-blog-posts'
+devto_url: 'https://dev.to/appwrite/30daysofappwrite-create-blog-posts-31fi'
+cover_image: 'https://res.cloudinary.com/practicaldev/image/fetch/s--8jroqjg1--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/705igi7mb6o8c0fa1m46.png'
+created_at: '2021-05-18T13:04:31Z'
+updated_at: '2022-04-12T17:33:43Z'
+published_at: '2021-05-18T13:08:52Z'
+tags: ['javascript', 'webdev', 'flutter', '30daysofappwrite']
+authors:
+  - name: 'Christy Jacob'
+	username: 'christyjacob4'
+	twitter_username: null
+	github_username: 'christyjacob4'
+	user_id: '119691'
+	website_url: null
+	profile_image: 'https://res.cloudinary.com/practicaldev/image/fetch/s--xsn7j9ry--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png'
+	profile_image_90: 'https://res.cloudinary.com/practicaldev/image/fetch/s--IX4ROHsY--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png'
 ---
+
 ## Intro
-[#30DaysOfAppwrite](http://30days.appwrite.io/) is a month-long event focused on giving developers a walk-through of all of Appwrite's features, starting from the basics to more advanced features like Cloud Functions! Alongside, we will also be building a fully-featured Medium clone to demonstrate how these 
+
+[#30DaysOfAppwrite](http://30days.appwrite.io/) is a month-long event focused on giving developers a walk-through of all of Appwrite's features, starting from the basics to more advanced features like Cloud Functions! Alongside, we will also be building a fully-featured Medium clone to demonstrate how these
 concepts can be applied when building a real-world app. We also have some exciting prizes for developers who follow along with us!
 
 ## Retrieving Blog Posts
+
 Welcome back to another session on the Appwrite Database 👋 . We hope you have gone through the [Day 17](https://dev.to/appwrite/30daysofappwrite-create-user-profiles-1c3m) article. It is important as we build upon the knowledge gained in Day [16](https://dev.to/appwrite/30daysofappwrite-database-design-140a) and [17](https://dev.to/appwrite/30daysofappwrite-create-user-profiles-1c3m). Now it's time to integrate our main feature into our app, Blog Posts.
 
 We will use the **Post** Collection to have users create posts that are embedded into their profiles.
@@ -39,90 +42,83 @@ The first method to add will be the one that fetches all posts. Technically, we 
 
 ```js
 export const api = {
-    //...
-    fetchPosts: (limit, offset) => {
-        return sdk.database.listDocuments(
-            postsCollection,
-            [Query.equal("published", 1)],
-            limit,
-            offset,
-            "created_at",
-            "DESC",
-            "int"
-        );
-    },
-    //...
-}
+	//...
+	fetchPosts: (limit, offset) => {
+		return sdk.database.listDocuments(
+			postsCollection,
+			[Query.equal('published', 1)],
+			limit,
+			offset,
+			'created_at',
+			'DESC',
+			'int'
+		);
+	}
+	//...
+};
 ```
 
 To fetch all posts from a user, we are going to write a similar method - except that we will filter by a **User ID** in the `user_id` attribute:
 
 ```js
 export const api = {
-  //...
-    fetchUserPosts: userId => {
-        return sdk.database.listDocuments(
-            postsCollection,
-            [
-                Query.equal("published", 1),
-                Query.equal("user_id", userId),
-            ],
-            100,
-            0,
-            "created_at",
-            "DESC",
-            "int"
-        );
-  },
-  //...
-}
+	//...
+	fetchUserPosts: (userId) => {
+		return sdk.database.listDocuments(
+			postsCollection,
+			[Query.equal('published', 1), Query.equal('user_id', userId)],
+			100,
+			0,
+			'created_at',
+			'DESC',
+			'int'
+		);
+	}
+	//...
+};
 ```
 
- To fetch a single post, we will use the [`getDocument`](https://appwrite.io/docs/client/database?sdk=web#databaseGetDocument) method where we can pass an ID, instead of the previously used [`listDocuments`](https://appwrite.io/docs/client/database?sdk=web#databaseListDocuments).
+To fetch a single post, we will use the [`getDocument`](https://appwrite.io/docs/client/database?sdk=web#databaseGetDocument) method where we can pass an ID, instead of the previously used [`listDocuments`](https://appwrite.io/docs/client/database?sdk=web#databaseListDocuments).
 
 ```js
 export const api = {
-    //...
-    fetchPost: id => sdk.database.getDocument(postsCollection, id),
-    //...
-}
+	//...
+	fetchPost: (id) => sdk.database.getDocument(postsCollection, id)
+	//...
+};
 ```
 
 And for deleting a post, we can use the [`deleteDocument`](https://appwrite.io/docs/client/database?sdk=web#databaseDeleteDocument) method like this:
 
 ```js
 export const api = {
-    //...
-    deletePost: id => sdk.database.deleteDocument(postsCollection, id),
-    //...
-}
+	//...
+	deletePost: (id) => sdk.database.deleteDocument(postsCollection, id)
+	//...
+};
 ```
+
 We will also add two more methods to create and edit a post, these will use [`createDocument`](https://appwrite.io/docs/client/database#databaseCreateDocument) and [`updateDocument`](https://appwrite.io/docs/client/database#databaseUpdateDocument) respectively.
 
 ```js
 export const api = {
-    createPost: async (data, userId, profileId) => {
-        return sdk.database.createDocument(
-            postsCollection,
-            "unique()",
-            data,
-            ["role:all"],
-            [`user:${userId}`]
-        );
-    },
-    updatePost: async (id, data, userId) => {
-        return sdk.database.updateDocument(
-            postsCollection,
-            id,
-            data,
-            ["role:all"],
-            [`user:${userId}`]
-        );
-    },
-}
+	createPost: async (data, userId, profileId) => {
+		return sdk.database.createDocument(
+			postsCollection,
+			'unique()',
+			data,
+			['role:all'],
+			[`user:${userId}`]
+		);
+	},
+	updatePost: async (id, data, userId) => {
+		return sdk.database.updateDocument(postsCollection, id, data, ['role:all'], [`user:${userId}`]);
+	}
+};
 ```
 
 We will also quickly create the `src/lib/Author.svelte` file and add the following contents to it:
+
 ```html
 <script>
     import { api } from "../appwrite";
@@ -150,28 +146,32 @@ We will also quickly create the `src/lib/Author.svelte` file and add the followi
     }
 </style>
 ```
+
 We will also create the `src/lib/Avatar.svelte` file and write this:
+
 ```html
 <script>
-    export let src;
+	export let src;
 </script>
 
 <img {src} alt="" />
 
 <style>
-    img {
-        border-radius: 100%;
-        height: 3rem;
-    }
+	img {
+		border-radius: 100%;
+		height: 3rem;
+	}
 </style>
 ```
+
 Next we will introduce the API functionality for the newly created Author component, go ahead and open up `appwrite.js` and update the code to add the following new method:
+
 ```js
 export const api = {
-    getAvatar: name => {
-        return sdk.avatars.getInitials(name);
-    },
-}
+	getAvatar: (name) => {
+		return sdk.avatars.getInitials(name);
+	}
+};
 ```
 
 Now that we have all the API requests ready to retrieve blog posts, we now need to add Routes and Components for it. For this, we edit the `src/routes/Index.svelte` file, which will display all blog posts.
@@ -291,46 +291,42 @@ On Day 17, we created a Profile page, but there were no posts yet. To add this f
 
 ```html
 <script>
-    import Preview from "../lib/Preview.svelte";
-    import MyPost from "../lib/MyPost.svelte";
-    //...
-    const fetchUser = () => api.fetchUser(params.id);
-    const fetchPosts = () => api.fetchUserPosts(params.id).then(r => r.documents);
-    let all = Promise.all([fetchUser(), fetchPosts()]);
+	import Preview from '../lib/Preview.svelte';
+	import MyPost from '../lib/MyPost.svelte';
+	//...
+	const fetchUser = () => api.fetchUser(params.id);
+	const fetchPosts = () => api.fetchUserPosts(params.id).then((r) => r.documents);
+	let all = Promise.all([fetchUser(), fetchPosts()]);
 </script>
 
 <section>
-    {#await all}
-        <Loading />
-    {:then [author, posts]}
-        <section class="author">
-            <h3>{author.name}</h3>
-        </section>
-        {#if $state.user.$id == params.id}
-            <h1>My Posts</h1>
-            <p><a class="button" href="/create" use:link>Create</a></p>
-            <section class="my-post">
-                {#each posts as post}
-                    <MyPost on:deleted={() => {all = Promise.all([fetchUser(), fetchPosts()]); console.log("deleted")} } {post} />
-                {/each}
-            </section>
-        {:else}
-            <h1>Latest Posts</h1>
-            <section class="latest">
-                {#each posts as post}
-                    <Preview {post} />
-                {/each}
-            </section>
-        {/if}
-    {:catch error}
-        {error}
-        <p>
-            Public profile not found
-            <a href="/profile/create" use:link>Create Public Profile</a>
-        </p>
-    {/await}
+	{#await all}
+	<Loading />
+	{:then [author, posts]}
+	<section class="author">
+		<h3>{author.name}</h3>
+	</section>
+	{#if $state.user.$id == params.id}
+	<h1>My Posts</h1>
+	<p><a class="button" href="/create" use:link>Create</a></p>
+	<section class="my-post">
+		{#each posts as post} <MyPost on:deleted={() => {all = Promise.all([fetchUser(), fetchPosts()]);
+		console.log("deleted")} } {post} /> {/each}
+	</section>
+	{:else}
+	<h1>Latest Posts</h1>
+	<section class="latest">
+		{#each posts as post}
+		<Preview {post} />
+		{/each}
+	</section>
+	{/if} {:catch error} {error}
+	<p>
+		Public profile not found
+		<a href="/profile/create" use:link>Create Public Profile</a>
+	</p>
+	{/await}
 </section>
-
 ```
 
 We are using two components here that haven't been created yet. `MyPost` is an editable component that will be shown only to the post owner and allow them to edit and delete their posts.  
@@ -441,41 +437,37 @@ Now the component to display a single blog post is left. For this, we are going 
 
 ```html
 <script>
-    import md from "snarkdown";
-    import Loading from "../lib/Loading.svelte";
-    import Author from "../lib/Author.svelte";
-    import { api } from "../appwrite";
-  
-    export let params = {};
-  
-    let postFetch = api.fetchPost(params.slug);
+	import md from 'snarkdown';
+	import Loading from '../lib/Loading.svelte';
+	import Author from '../lib/Author.svelte';
+	import { api } from '../appwrite';
+
+	export let params = {};
+
+	let postFetch = api.fetchPost(params.slug);
 </script>
 
 {#await postFetch}
-    <Loading />
+<Loading />
 {:then post}
-    <h1>
-        {post.title}
-    </h1>
-    <Author user={post.user_id} />
-    {#if post.cover}
-        <img class="cover" src={post.cover} alt={post.title} />
-    {/if}
-    <section class="content">
-        {@html md(post.text)}
-    </section>
-    <h2>Comments</h2>
+<h1>{post.title}</h1>
+<Author user="{post.user_id}" />
+{#if post.cover}
+<img class="cover" src="{post.cover}" alt="{post.title}" />
+{/if}
+<section class="content">{@html md(post.text)}</section>
+<h2>Comments</h2>
 {/await}
 
 <style>
-    img.cover {
-        width: 100%;
-        border-radius: 0.5rem;
-    }
-    section.content {
-        font-size: 1.1rem;
-        line-height: 2rem;
-    }
+	img.cover {
+		width: 100%;
+		border-radius: 0.5rem;
+	}
+	section.content {
+		font-size: 1.1rem;
+		line-height: 2rem;
+	}
 </style>
 ```
 
@@ -487,132 +479,128 @@ Now we are going to add the first component, which is going to write data to our
 
 ```html
 <script>
-    import EasyMDE from "easymde";
-    import { api } from "../appwrite";
-    import { state } from "../store";
-    import { onMount } from "svelte";
-    import { replace } from 'svelte-spa-router';
-    import "../../node_modules/easymde/dist/easymde.min.css";
-    import Loading from "../lib/Loading.svelte";
-    export let params = {};
-    let published = false,
-        title = "",
-        easyMDE,
-        message = "",
-        loading = false,
-        cover,
-        post,
-        content = "";
-    let postFetch = async () => {
-        post = await api.fetchPost(params.slug);
-        title = post.title;
-        easyMDE.value(post.text);
-        cover = post.cover;
-    };
-    onMount(() => {
-        if (params.slug) {
-            postFetch();
-        }
-        easyMDE = new EasyMDE({ element: document.getElementById("content"), renderingConfig: {
-            singleLineBreaks: true,
-        } });
-    });
-    const submit = async () => {
-        message = "";
-        loading = true;
-        let content = easyMDE.value();
-        if (title.trim() == "" || content.trim() == "") {
-            message = "Title and content are both required";
-            console.log("title and content are both required");
-            loading = false;
-            return;
-        }
-        console.log({
-            title: title,
-            text: content,
-            published: published,
-            user: $state.user.$id,
-            profile: $state.profile.$id,
-        });
-        try {
-            let data = {
-                    title: title,
-                    text: content,
-                    published: published,
-                    user_id: $state.user.$id,
-                    created_at: params.slug ? post.created_at :  new Date().getTime(),
-                };
-            if(params.slug) {
-                //update
-                await api.updatePost(params.slug,data,$state.user.$id)
-                replace('/profile/'+$state.user.$id);
-            } else {
-                await api.createPost(
-                    data,
-                    $state.user.$id,
-                    $state.profile.$id
-                );
-                easyMDE.value("");
-                title = "";
-                content = "";
-                console.log("post created successfully");
-                message = "Post created successfully";
-            }
-        } catch (error) {
-            console.log(error);
-            message = error;
-        } finally {
-            loading = false;
-        }
-    };
+	import EasyMDE from 'easymde';
+	import { api } from '../appwrite';
+	import { state } from '../store';
+	import { onMount } from 'svelte';
+	import { replace } from 'svelte-spa-router';
+	import '../../node_modules/easymde/dist/easymde.min.css';
+	import Loading from '../lib/Loading.svelte';
+	export let params = {};
+	let published = false,
+		title = '',
+		easyMDE,
+		message = '',
+		loading = false,
+		cover,
+		post,
+		content = '';
+	let postFetch = async () => {
+		post = await api.fetchPost(params.slug);
+		title = post.title;
+		easyMDE.value(post.text);
+		cover = post.cover;
+	};
+	onMount(() => {
+		if (params.slug) {
+			postFetch();
+		}
+		easyMDE = new EasyMDE({
+			element: document.getElementById('content'),
+			renderingConfig: {
+				singleLineBreaks: true
+			}
+		});
+	});
+	const submit = async () => {
+		message = '';
+		loading = true;
+		let content = easyMDE.value();
+		if (title.trim() == '' || content.trim() == '') {
+			message = 'Title and content are both required';
+			console.log('title and content are both required');
+			loading = false;
+			return;
+		}
+		console.log({
+			title: title,
+			text: content,
+			published: published,
+			user: $state.user.$id,
+			profile: $state.profile.$id
+		});
+		try {
+			let data = {
+				title: title,
+				text: content,
+				published: published,
+				user_id: $state.user.$id,
+				created_at: params.slug ? post.created_at : new Date().getTime()
+			};
+			if (params.slug) {
+				//update
+				await api.updatePost(params.slug, data, $state.user.$id);
+				replace('/profile/' + $state.user.$id);
+			} else {
+				await api.createPost(data, $state.user.$id, $state.profile.$id);
+				easyMDE.value('');
+				title = '';
+				content = '';
+				console.log('post created successfully');
+				message = 'Post created successfully';
+			}
+		} catch (error) {
+			console.log(error);
+			message = error;
+		} finally {
+			loading = false;
+		}
+	};
 </script>
 
 <section>
-    {#if params.slug}
-        <h2>Edit Post</h2>
-    {:else}
-        <h2>Create Post</h2>
-    {/if}
-    {#if message}
-        <div class="alert">{message}</div>
-    {/if}
-    <form on:submit|preventDefault={submit}>
-        <label for="title">Title</label>
-        <input
-            required
-            type="text"
-            placeholder="Enter title"
-            bind:value={title} />
-        <label for="content">Content</label>
-        <textarea
-            bind:value={content}
-            name="content"
-            id="content"
-            cols="30"
-            rows="10"
-            placeholder="Enter content" />
-        <label for="status">Status</label>
-        <select name="status" id="status" bind:value={published}>
-            <option value={false}>Draft</option>
-            <option value={true}>Published</option>
-        </select>
-        <button disabled={loading ? true : false} class="button" type="submit"
-            >{ params.slug ? 'Save' : 'Create'}</button>
-    </form>
+	{#if params.slug}
+	<h2>Edit Post</h2>
+	{:else}
+	<h2>Create Post</h2>
+	{/if} {#if message}
+	<div class="alert">{message}</div>
+	{/if}
+	<form on:submit|preventDefault="{submit}">
+		<label for="title">Title</label>
+		<input required type="text" placeholder="Enter title" bind:value="{title}" />
+		<label for="content">Content</label>
+		<textarea
+			bind:value="{content}"
+			name="content"
+			id="content"
+			cols="30"
+			rows="10"
+			placeholder="Enter content"
+		/>
+		<label for="status">Status</label>
+		<select name="status" id="status" bind:value="{published}">
+			<option value="{false}">Draft</option>
+			<option value="{true}">Published</option>
+		</select>
+		<button disabled="{loading" ? true : false} class="button" type="submit">
+			{ params.slug ? 'Save' : 'Create'}
+		</button>
+	</form>
 </section>
 
 <style>
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-    label {
-        margin-top: 1rem;
-    }
-    .alert {
-        background-color: #ff000066;
-        padding: 1rem;
-    }
+	form {
+		display: flex;
+		flex-direction: column;
+	}
+	label {
+		margin-top: 1rem;
+	}
+	.alert {
+		background-color: #ff000066;
+		padding: 1rem;
+	}
 </style>
 ```
 
@@ -620,24 +608,25 @@ This allows users to create and edit their posts. The final step is to add all t
 
 ```html
 <script>
-    //...
-     import Post from "./routes/Post.svelte";
-     import Create from "./routes/Create.svelte";
-    //..    
-    const routes = {
-        //...
-        "/create": Create,
-        "/post/:slug": Post,
-        "/post/:slug/edit": Create
-    };
+	//...
+	import Post from './routes/Post.svelte';
+	import Create from './routes/Create.svelte';
+	//..
+	const routes = {
+		//...
+		'/create': Create,
+		'/post/:slug': Post,
+		'/post/:slug/edit': Create
+	};
 </script>
 ```
 
-## Credits 
+## Credits
+
 We hope you liked this write-up. You can follow [#30DaysOfAppwrite](https://twitter.com/search?q=%2330daysofappwrite) on Social Media to keep up with all of our posts. The complete event timeline can be found [here](http://30days.appwrite.io)
 
-* [Discord Server](https://appwrite.io/discord)
-* [Appwrite Homepage](https://appwrite.io/)  
-* [Appwrite's Github](https://github.com/appwrite)
+- [Discord Server](https://appwrite.io/discord)
+- [Appwrite Homepage](https://appwrite.io/)
+- [Appwrite's Github](https://github.com/appwrite)
 
 Feel free to reach out to us on Discord if you would like to learn more about Appwrite, Aliens or Unicorns 🦄. Stay tuned for tomorrow's article! Until then 👋

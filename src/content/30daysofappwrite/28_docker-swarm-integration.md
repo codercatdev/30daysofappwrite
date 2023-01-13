@@ -1,25 +1,27 @@
 ---
-day: 28
-title: "Docker Swarm Integration"
-description: "The fiercest of enemies may be overcome by a swarm."
-slug: "docker-swarm-integration"
-devto_url: "https://dev.to/appwrite/30daysofappwrite-docker-swarm-integration-2io9"
-cover_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--6GEyPwwA--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/676k9mpl72nalo0oks5r.png"
-created_at: "2021-05-28T11:44:32Z"
-updated_at: "2022-04-12T17:55:57Z"
-published_at: "2021-05-28T12:43:54Z"
-tags: ["javascript","webdev","flutter","30daysofappwrite"]
-user:
-  name: "kodumbeats"
-  username: "kodumbeats"
-  twitter_username: null
-  github_username: "kodumbeats"
-  user_id: "391679"
-  website_url: "https://kodumbeats.dev"
-  profile_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--e8LZR0bd--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/391679/7b6ec8dd-dae7-4b56-bc9d-d2aaa4be7935.jpeg"
-  profile_image_90: "https://res.cloudinary.com/practicaldev/image/fetch/s--E9dttZhp--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/391679/7b6ec8dd-dae7-4b56-bc9d-d2aaa4be7935.jpeg"
+weight: 28
+title: 'Docker Swarm Integration'
+description: 'The fiercest of enemies may be overcome by a swarm.'
+slug: 'docker-swarm-integration'
+devto_url: 'https://dev.to/appwrite/30daysofappwrite-docker-swarm-integration-2io9'
+cover_image: 'https://res.cloudinary.com/practicaldev/image/fetch/s--6GEyPwwA--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/676k9mpl72nalo0oks5r.png'
+created_at: '2021-05-28T11:44:32Z'
+updated_at: '2022-04-12T17:55:57Z'
+published_at: '2021-05-28T12:43:54Z'
+tags: ['javascript', 'webdev', 'flutter', '30daysofappwrite']
+authors:
+  - name: 'kodumbeats'
+    username: 'kodumbeats'
+    twitter_username: null
+    github_username: 'kodumbeats'
+    user_id: '391679'
+    website_url: 'https://kodumbeats.dev'
+    profile_image: 'https://res.cloudinary.com/practicaldev/image/fetch/s--e8LZR0bd--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/391679/7b6ec8dd-dae7-4b56-bc9d-d2aaa4be7935.jpeg'
+    profile_image_90: 'https://res.cloudinary.com/practicaldev/image/fetch/s--E9dttZhp--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/391679/7b6ec8dd-dae7-4b56-bc9d-d2aaa4be7935.jpeg'
 ---
+
 ## Intro
+
 [#30DaysOfAppwrite](http://30days.appwrite.io/) is a month-long event focused on giving developers a walk-through of all of Appwrite's features, starting from the basics to more advanced features like Cloud Functions! Alongside we will also be building a fully-featured Medium clone to demonstrate how these concepts can be applied when building a real-world app. We also have some exciting prizes for developers who follow along with us!
 
 ## Deploy with Docker Swarm
@@ -50,7 +52,9 @@ We'll create the swarm on whichever host we want to be the "leader." Initialize 
 ```bash
 docker swarm init
 ```
+
 Which should output:
+
 ```
 Swarm initialized: current node (7db8w7aurb7qrhvm0c0ttd4ky) is now a manager.
 ```
@@ -60,7 +64,9 @@ To add a worker to this swarm, run the following command:
 ```bash
 docker swarm join --token SWMTKN-1-0wagrl3qt4loflf9jcadj8gx53fj2dzmbwaato7r50vghmgiwp-cvo3jflyfh2gnu46pzjtaexv2 your.ip.addr.ess:2377
 ```
+
 Which should output:
+
 ```
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
@@ -70,7 +76,9 @@ Now, let's run the provided command on our other system(s) - we're looking for t
 ```bash
 docker node ls
 ```
+
 Which should display the following:
+
 ```
 ID                            HOSTNAME          STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
 yfl7xsy5birfbpiw040chef67     appwrite          Ready     Active                          20.10.6
@@ -100,7 +108,7 @@ Now, replace each named volume in `docker-compose.yml` with its corresponding NF
 # - appwrite-certificates:/storage/certificates:rw
 - /nfs/certificates:/storage/certificates:rw
 
-``` 
+```
 
 Then, we'll need to remove the `depends_on` and `container_name` stanzas from `docker-compose.yml`, as they aren't supported by Docker Swarm.
 
@@ -130,21 +138,21 @@ Our microservice workers rely on Redis to handle pub/sub, so you may see them re
 ```bash
 $ docker service ls
 ID             NAME                                    MODE         REPLICAS   IMAGE                     PORTS
-ktfto6dap451   appwrite_appwrite                       replicated   1/1        appwrite/appwrite:0.8.0   
-hazw2csk4epd   appwrite_appwrite-maintenance           replicated   1/1        appwrite/appwrite:0.8.0   
-fshro0zn8iw6   appwrite_appwrite-schedule              replicated   1/1        appwrite/appwrite:0.8.0   
-jep5n0gnmvy6   appwrite_appwrite-worker-audits         replicated   1/1        appwrite/appwrite:0.8.0   
-oiftp636aq6v   appwrite_appwrite-worker-certificates   replicated   1/1        appwrite/appwrite:0.8.0   
-tlu7yxvtrr0r   appwrite_appwrite-worker-deletes        replicated   1/1        appwrite/appwrite:0.8.0   
-rda2kspenbzr   appwrite_appwrite-worker-functions      replicated   1/1        appwrite/appwrite:0.8.0   
-im800v9tct4n   appwrite_appwrite-worker-mails          replicated   1/1        appwrite/appwrite:0.8.0   
-ry0u3v726o8h   appwrite_appwrite-worker-tasks          replicated   1/1        appwrite/appwrite:0.8.0   
-734y2mr6gzkc   appwrite_appwrite-worker-usage          replicated   1/1        appwrite/appwrite:0.8.0   
-bkotuk5kwmxx   appwrite_appwrite-worker-webhooks       replicated   1/1        appwrite/appwrite:0.8.0   
-ff6iicbmf5my   appwrite_influxdb                       replicated   1/1        appwrite/influxdb:1.0.0   
-892923vq96on   appwrite_mariadb                        replicated   1/1        appwrite/mariadb:1.2.0    
-uw3l8bkoc3sl   appwrite_redis                          replicated   1/1        redis:6.0-alpine3.12      
-ulp1cy06plnv   appwrite_telegraf                       replicated   1/1        appwrite/telegraf:1.0.0   
+ktfto6dap451   appwrite_appwrite                       replicated   1/1        appwrite/appwrite:0.8.0
+hazw2csk4epd   appwrite_appwrite-maintenance           replicated   1/1        appwrite/appwrite:0.8.0
+fshro0zn8iw6   appwrite_appwrite-schedule              replicated   1/1        appwrite/appwrite:0.8.0
+jep5n0gnmvy6   appwrite_appwrite-worker-audits         replicated   1/1        appwrite/appwrite:0.8.0
+oiftp636aq6v   appwrite_appwrite-worker-certificates   replicated   1/1        appwrite/appwrite:0.8.0
+tlu7yxvtrr0r   appwrite_appwrite-worker-deletes        replicated   1/1        appwrite/appwrite:0.8.0
+rda2kspenbzr   appwrite_appwrite-worker-functions      replicated   1/1        appwrite/appwrite:0.8.0
+im800v9tct4n   appwrite_appwrite-worker-mails          replicated   1/1        appwrite/appwrite:0.8.0
+ry0u3v726o8h   appwrite_appwrite-worker-tasks          replicated   1/1        appwrite/appwrite:0.8.0
+734y2mr6gzkc   appwrite_appwrite-worker-usage          replicated   1/1        appwrite/appwrite:0.8.0
+bkotuk5kwmxx   appwrite_appwrite-worker-webhooks       replicated   1/1        appwrite/appwrite:0.8.0
+ff6iicbmf5my   appwrite_influxdb                       replicated   1/1        appwrite/influxdb:1.0.0
+892923vq96on   appwrite_mariadb                        replicated   1/1        appwrite/mariadb:1.2.0
+uw3l8bkoc3sl   appwrite_redis                          replicated   1/1        redis:6.0-alpine3.12
+ulp1cy06plnv   appwrite_telegraf                       replicated   1/1        appwrite/telegraf:1.0.0
 9aswnz3qq693   appwrite_traefik                        replicated   1/1        traefik:2.3               *:80->80/tcp, *:443->443/tcp
 ```
 
@@ -166,8 +174,8 @@ deploy:
 We can check that the replica was deployed by filtering for the specific service:
 
 ```bash
-$ docker service ls --filter name=appwrite_appwrite-worker-functions 
-ID             NAME                                 MODE         REPLICAS   IMAGE                     PORTS 
+$ docker service ls --filter name=appwrite_appwrite-worker-functions
+ID             NAME                                 MODE         REPLICAS   IMAGE                     PORTS
 rda2kspenbzr   appwrite_appwrite-worker-functions   replicated   2/2        appwrite/appwrite:0.8.0
 ```
 
@@ -189,10 +197,11 @@ We just covered the tip of the iceberg. For further reading on running Appwrite 
 - [Docker secrets](https://docs.docker.com/engine/swarm/secrets/) and [Docker configs](https://docs.docker.com/engine/swarm/configs/) can be used to more easily control and distribute sensitive data through the swarm.
 
 ## Credits
+
 We hope you liked this write-up. You can follow [#30DaysOfAppwrite](https://twitter.com/search?q=%2330daysofappwrite) on Social Media to keep up with all of our posts. The complete event timeline can be found [here](http://30days.appwrite.io)
 
-* [Discord Server](https://appwrite.io/discord)
-* [Appwrite Homepage](https://appwrite.io/)
-* [Appwrite's Github](https://github.com/appwrite)
+- [Discord Server](https://appwrite.io/discord)
+- [Appwrite Homepage](https://appwrite.io/)
+- [Appwrite's Github](https://github.com/appwrite)
 
 Feel free to reach out to us on Discord if you would like to learn more about Appwrite, Aliens, or Unicorns 🦄. Stay tuned for tomorrow's article! Until then 👋

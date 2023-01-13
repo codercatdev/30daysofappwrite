@@ -1,23 +1,23 @@
 ---
-day: 8
-title: "Accounts & Users API"
-description: "Learn how to implement users and authorization in your app."
-slug: "accounts-users-api"
-devto_url: "https://dev.to/appwrite/30daysofappwrite-accounts-users-api-4592"
-cover_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--u7jL91T2--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/uzz774f9tsnynt6jzr4t.png"
-created_at: "2021-05-08T14:08:41Z"
-updated_at: "2021-05-08T14:08:41Z"
-published_at: "2021-05-08T14:08:41Z"
-tags: ["javascript","webdev","flutter","30daysofappwrite"]
-user:
-  name: "Christy Jacob"
-  username: "christyjacob4"
-  twitter_username: null
-  github_username: "christyjacob4"
-  user_id: "119691"
-  website_url: null
-  profile_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--xsn7j9ry--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png"
-  profile_image_90: "https://res.cloudinary.com/practicaldev/image/fetch/s--IX4ROHsY--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png"
+weight: 8
+title: 'Accounts & Users API'
+description: 'Learn how to implement users and authorization in your app.'
+slug: 'accounts-users-api'
+devto_url: 'https://dev.to/appwrite/30daysofappwrite-accounts-users-api-4592'
+cover_image: 'https://res.cloudinary.com/practicaldev/image/fetch/s--u7jL91T2--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/uzz774f9tsnynt6jzr4t.png'
+created_at: '2021-05-08T14:08:41Z'
+updated_at: '2021-05-08T14:08:41Z'
+published_at: '2021-05-08T14:08:41Z'
+tags: ['javascript', 'webdev', 'flutter', '30daysofappwrite']
+authors:
+  - name: 'Christy Jacob'
+	username: 'christyjacob4'
+	twitter_username: null
+	github_username: 'christyjacob4'
+	user_id: '119691'
+	website_url: null
+	profile_image: 'https://res.cloudinary.com/practicaldev/image/fetch/s--xsn7j9ry--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png'
+	profile_image_90: 'https://res.cloudinary.com/practicaldev/image/fetch/s--IX4ROHsY--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/119691/5be2bcad-e1ee-4ef8-928b-d71f4e355af6.png'
 ---
 
 ## Intro
@@ -34,7 +34,7 @@ Welcome to Day 8 👋. The Users and Accounts APIs seem to raise questions for n
 If you're looking for a TL;DR this table should help you.
 
 | Users API                                          | Accounts API                                            |
-|----------------------------------------------------|---------------------------------------------------------|
+| -------------------------------------------------- | ------------------------------------------------------- |
 | Server Side API                                    | Client Side API                                         |
 | Accessed using an API Key                          | Accessed using a Cookie (or JWT)                        |
 | Operates in an Admin Scope                         | Operates in the scope of the currently logged in user   |
@@ -48,9 +48,9 @@ Alternatively, the Accounts API operates in the scope of the currently logged-in
 
 ## Deep Dive into the Accounts API
 
-Let's try to understand the Accounts API a little better. Some of the most notable methods of the Accounts API are the [`createSession()`](https://appwrite.io/docs/client/account?sdk=web#accountCreateSession) and the [`createOAuth2Session()`](https://appwrite.io/docs/client/account?sdk=web#accountCreateOAuth2Session) methods. If successful, their response contains a `set-cookie` header that tells the browser to save and include this cookie with every subsequent request. In our Flutter ( and upcoming Android ) SDKs, we make use of a [Cookie Jar / Cookie Store](https://developer.android.com/reference/java/net/CookieStore) to achieve similar functionality. 
+Let's try to understand the Accounts API a little better. Some of the most notable methods of the Accounts API are the [`createSession()`](https://appwrite.io/docs/client/account?sdk=web#accountCreateSession) and the [`createOAuth2Session()`](https://appwrite.io/docs/client/account?sdk=web#accountCreateOAuth2Session) methods. If successful, their response contains a `set-cookie` header that tells the browser to save and include this cookie with every subsequent request. In our Flutter ( and upcoming Android ) SDKs, we make use of a [Cookie Jar / Cookie Store](https://developer.android.com/reference/java/net/CookieStore) to achieve similar functionality.
 
-Appwrite supports a variety of authentication methods. Since 0.8, we've added support for **Anonymous Users**. When you develop an application, there might be times when you want to let a user interact with parts of your app before they're signed in. This also increases the conversion rate of your users, since the hurdle of registration is very high. If an anonymous user decides to sign up to your app, they can later convert their account using their email and password or the OAuth method. 
+Appwrite supports a variety of authentication methods. Since 0.8, we've added support for **Anonymous Users**. When you develop an application, there might be times when you want to let a user interact with parts of your app before they're signed in. This also increases the conversion rate of your users, since the hurdle of registration is very high. If an anonymous user decides to sign up to your app, they can later convert their account using their email and password or the OAuth method.
 
 You can enable and disable any authentication method under the **Settings** tab of the **Users** section of the console.
 
@@ -65,15 +65,15 @@ We'll be using a JavaScript example for this tutorial. Whether using a framework
 This is the method to use if you want to implement **Sign Up** functionality in your app. Do note that this will only create a new user. You will **still need to call** the `createSession()` method using the same email and password to create a new session for this user. Make sure you've followed previous posts to initialize your Appwrite SDK with your Appwrite project's endpoint and project ID before proceeding to these steps.
 
 ```js
-let promise = sdk.account.create("unique()", "email@example.com", "password", "name");
+let promise = sdk.account.create('unique()', 'email@example.com', 'password', 'name');
 
 promise.then(
-  function (response) {
-    console.log(response); // Success
-  },
-  function (error) {
-    console.log(error); // Failure
-  }
+	function (response) {
+		console.log(response); // Success
+	},
+	function (error) {
+		console.log(error); // Failure
+	}
 );
 ```
 
@@ -83,27 +83,24 @@ If you want to achieve **Login** functionality in your app, this is the method y
 
 ```js
 // Using the promise syntax
-let promise = sdk.account.createSession("email@example.com", "password");
+let promise = sdk.account.createSession('email@example.com', 'password');
 promise.then(
-  function (response) {
-    console.log(response); // Success
-  },
-  function (error) {
-    console.log(error); // Failure
-  }
+	function (response) {
+		console.log(response); // Success
+	},
+	function (error) {
+		console.log(error); // Failure
+	}
 );
 
 // Or using async/await
 const login = async () => {
-  try {
-    let response = await sdk.account.createSession(
-      "email@example.com",
-      "password"
-    );
-    console.log(response);
-  } catch (e) {
-    console.log(e);
-  }
+	try {
+		let response = await sdk.account.createSession('email@example.com', 'password');
+		console.log(response);
+	} catch (e) {
+		console.log(e);
+	}
 };
 login();
 ```
@@ -129,15 +126,15 @@ An Appwrite session cookie uses the following syntax: `a_session_<PROJECT-ID>`, 
 In order to implement **Logout** functionality, you will need to delete a session using a session ID. You can delete the current session by passing in `current` in place of the `SESSION_ID`.
 
 ```js
-let promise = sdk.account.deleteSession("[SESSION_ID]");
+let promise = sdk.account.deleteSession('[SESSION_ID]');
 
 promise.then(
-  function (response) {
-    console.log(response); // Success
-  },
-  function (error) {
-    console.log(error); // Failure
-  }
+	function (response) {
+		console.log(response); // Success
+	},
+	function (error) {
+		console.log(error); // Failure
+	}
 );
 ```
 
@@ -152,15 +149,15 @@ We can achieve all the functionalities we discussed above with the Users API as 
 The create method can be used to create a new user. Do note that this is **not the same** as creating a session using the Accounts API. There is no cookie involved here. Think of this as an admin creating an account on behalf of one of their users. To create a session, the user will need to use these credentials to log in from a client-side app.
 
 ```js
-let promise = users.create("email@example.com", "password");
+let promise = users.create('email@example.com', 'password');
 
 promise.then(
-  function (response) {
-    console.log(response);
-  },
-  function (error) {
-    console.log(error);
-  }
+	function (response) {
+		console.log(response);
+	},
+	function (error) {
+		console.log(error);
+	}
 );
 ```
 
@@ -169,15 +166,15 @@ promise.then(
 Let's say that you have a Cloud Function that monitors account logins and alerts a user about a suspicious login from a different location or IP. In this case, as a preventive measure, you might want to delete the session or block the account altogether until the real user takes action. The `deleteSession()` method comes handy in this case.
 
 ```js
-let promise = users.deleteSession("[USER_ID]", "[SESSION_ID]");
+let promise = users.deleteSession('[USER_ID]', '[SESSION_ID]');
 
 promise.then(
-  function (response) {
-    console.log(response);
-  },
-  function (error) {
-    console.log(error);
-  }
+	function (response) {
+		console.log(response);
+	},
+	function (error) {
+		console.log(error);
+	}
 );
 ```
 

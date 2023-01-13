@@ -1,4 +1,14 @@
 /**
+ * Enum for content values.
+ * @readonly
+ * @enum {string}
+ */
+export const contentTypes = {
+	_30daysofappwrite: '30daysofappwrite',
+	appwrite101: 'appwrite-101'
+};
+
+/**
  * @typedef {Object} Post
  * @property {string} slug
  * @property {string} title
@@ -10,14 +20,15 @@
  * @property {string} user
  * @property {string=} youtube
  * @property {ConstructorOfATypedSvelteComponent=} body
+ * @property {User[]=} authors
  */
 
 /**
- * Enum for content values.
- * @readonly
- * @enum {string}
+ * @typedef {Object} User
+ * @property {string=} name
+ * @property {string=} username
+ * @property {string=} twitter_username
+ * @property {string=} github_username
+ * @property {string=} website_url
+ * @property {string=} profile_image
  */
-export const contentTypes = {
-	_30daysofappwrite: '30daysofappwrite',
-	appwrite101: 'appwrite-101'
-};
