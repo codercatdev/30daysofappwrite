@@ -61,6 +61,7 @@
 		});
 
 		if (darkMode) {
+			document.documentElement.classList.add('dark');
 			body?.classList.add('theme-dark');
 			dark?.setAttribute('checked', 'true');
 		}
