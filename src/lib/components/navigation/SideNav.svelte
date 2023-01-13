@@ -1,19 +1,5 @@
 <script>
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
-
-	onMount(async () => {
-		const menuButton = document.querySelector('#menuButton');
-		const main = document.querySelector('#main');
-		const nav = document.querySelector('#nav');
-
-		const toggleDrawer = () => {
-			main?.classList.toggle('is-open');
-			nav?.classList.toggle('nav-top');
-		};
-		menuButton?.addEventListener('click', toggleDrawer);
-		return () => menuButton?.removeEventListener('click', toggleDrawer);
-	});
 </script>
 
 <nav id="nav" class="main-side">

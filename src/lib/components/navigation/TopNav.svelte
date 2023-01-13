@@ -1,11 +1,65 @@
 <script>
 	import { page } from '$app/stores';
-	import { afterUpdate } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 
 	/** @type {string[]}*/
 	let breadcrumbs = [];
 	afterUpdate(async () => {
 		breadcrumbs = $page.url.pathname.split('/').filter((p) => p !== '');
+	});
+
+	onMount(() => {
+		/**
+		 * TODO: Make this more svelty
+		 */
+
+		/**
+		 * Menu for mobile drawer
+		 */
+		const menuButton = document.querySelector('#menuButton');
+		const main = document.querySelector('#main');
+		const nav = document.querySelector('#nav');
+
+		const toggleDrawer = () => {
+			main?.classList.toggle('is-open');
+			nav?.classList.toggle('nav-top');
+		};
+		menuButton?.addEventListener('click', toggleDrawer);
+
+		/**
+		 * DropDown button for dark mode
+		 */
+		const dropdownBtn = document.querySelector('#dropdownBtn');
+		const dropdown = document.querySelector('#dropdown');
+		dropdownBtn?.addEventListener('click', () => {
+			dropdown?.classList.toggle('u-hide');
+		});
+		/**
+		 * Dark Mode
+		 */
+		let mode = localStorage.getItem('theme');
+		let darkMode = mode ? true : false;
+		const body = document.querySelector('body');
+		const light = document.querySelector('#light');
+		const dark = document.querySelector('#dark');
+
+		light?.addEventListener('change', function (e) {
+			body?.classList.remove('theme-dark');
+			darkMode = false;
+			localStorage.setItem('theme', JSON.stringify(darkMode));
+		});
+		dark?.addEventListener('change', function (e) {
+			body?.classList.add('theme-dark');
+			darkMode = true;
+			localStorage.setItem('theme', JSON.stringify(darkMode));
+		});
+
+		if (darkMode) {
+			body?.classList.add('theme-dark');
+			dark?.setAttribute('checked', 'true');
+		}
+
+		return () => menuButton?.removeEventListener('click', toggleDrawer);
 	});
 </script>
 
@@ -34,6 +88,32 @@
 					<span class="text">Back to Appwrite</span>
 					<span class="icon-external-link" aria-hidden="true" />
 				</a>
+			</div>
+		</nav>
+		<nav class="u-flex u-height-100-percents u-sep-inline-start">
+			<div class="drop-wrapper">
+				<button id="dropdownBtn" class="user-profile-button">
+					Dark Mode Setting
+					<span class="icon-cheveron-down is-only-desktop" aria-hidden="true" />
+				</button>
+				<div id="dropdown" class="drop is-block-end is-no-arrow u-hide">
+					<section class="drop-section">
+						<ul class="flex flex-col gap-4">
+							<li class="flex items-center gap-4">
+								<img src="/images/mode/light-mode.svg" alt="light mode" width="65" height="56" />
+								<input type="radio" class="is-small" id="light" name="mode" checked />
+							</li>
+							<li class="flex items-center gap-4">
+								<img src="/images/mode/dark-mode.svg" alt="dark mode" width="65" height="56" />
+								<input type="radio" class="is-small" id="dark" name="mode" />
+							</li>
+							<li class="flex items-center gap-4">
+								<img src="/images/mode/system-mode.svg" alt="system mode" width="65" height="56" />
+								<input type="radio" class="is-small" name="mode" />
+							</li>
+						</ul>
+					</section>
+				</div>
 			</div>
 		</nav>
 	</div>

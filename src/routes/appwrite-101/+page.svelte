@@ -5,8 +5,10 @@
 </script>
 
 <section class="grid items-center justify-center h-full gap-4 justify-items-center">
-	<h1 class="heading-level-1">Appwrite 101</h1>
-	<p class="max-w-3xl">A Great way to start learning how to use Appwrite.</p>
+	<div>
+		<h1 class="heading-level-1">Appwrite 101</h1>
+		<p class="max-w-3xl">A Great way to start learning how to use Appwrite.</p>
+	</div>
 	<section class="m-2">
 		<h2 class="heading-level-2">⏰ Timeline</h2>
 		<div class="relative">
