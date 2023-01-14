@@ -1,7 +1,13 @@
 <script>
+	import { afterUpdate } from 'svelte';
+
 	/** @type {string | undefined} */
 	export let src;
-	src = `https://www.youtube.com/embed/${src?.split('/').at(-1)}`;
+
+	afterUpdate(() => {
+		src = `https://www.youtube.com/embed/${src?.split('/').at(-1)}`;
+		console.log(src);
+	});
 </script>
 
 <div class="video-wrapper w-[80vw] xl:w-[1024px] mx-auto">
