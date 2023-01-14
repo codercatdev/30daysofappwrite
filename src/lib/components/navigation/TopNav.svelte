@@ -75,7 +75,13 @@
 		<span class="icon-menu" aria-hidden="true" />
 	</button>
 	<a href="/" class="logo">
-		<img src="/images/appwrite-gray-light.svg" width="132" height="34" alt="Appwrite" />
+		<img
+			src="/images/appwrite-gray-light.svg"
+			width="132"
+			height="34"
+			alt="Appwrite"
+			loading="lazy"
+		/>
 	</a>
 	<nav class="breadcrumbs is-only-desktop" aria-label="breadcrumb">
 		<ol class="breadcrumbs-list">
@@ -107,15 +113,33 @@
 					<section class="drop-section">
 						<ul class="flex flex-col gap-4">
 							<li class="flex items-center gap-4">
-								<img src="/images/mode/light-mode.svg" alt="light mode" width="65" height="56" />
+								<img
+									src="/images/mode/light-mode.svg"
+									alt="light mode"
+									width="65"
+									height="56"
+									loading="lazy"
+								/>
 								<input type="radio" class="is-small" id="light" name="mode" checked />
 							</li>
 							<li class="flex items-center gap-4">
-								<img src="/images/mode/dark-mode.svg" alt="dark mode" width="65" height="56" />
+								<img
+									src="/images/mode/dark-mode.svg"
+									alt="dark mode"
+									width="65"
+									height="56"
+									loading="lazy"
+								/>
 								<input type="radio" class="is-small" id="dark" name="mode" />
 							</li>
 							<li class="flex items-center gap-4">
-								<img src="/images/mode/system-mode.svg" alt="system mode" width="65" height="56" />
+								<img
+									src="/images/mode/system-mode.svg"
+									alt="system mode"
+									width="65"
+									height="56"
+									loading="lazy"
+								/>
 								<input type="radio" class="is-small" name="mode" />
 							</li>
 						</ul>

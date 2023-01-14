@@ -23,7 +23,7 @@
 				</div>
 			{:else if post?.cover_image}
 				<!-- TODO: Make lazyload and responsive -->
-				<img src={post.cover_image} alt={post.title} />
+				<img src={post.cover_image} alt={post.title} loading="lazy" />
 			{/if}
 			<div>
 				<h1 class="heading-level-1">{post.title}</h1>

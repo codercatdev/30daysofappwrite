@@ -14,6 +14,7 @@
 						height="60"
 						src={author?.profile_image}
 						alt={`Photo of ${author?.name}`}
+						loading="lazy"
 					/>
 				{/if}
 				<div class="flex flex-col">

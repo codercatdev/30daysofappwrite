@@ -7,7 +7,13 @@
 </script>
 
 <section class="grid items-center justify-center h-full gap-4 justify-items-center">
-	<img src="/images/lessons.png" alt="Person riding rocket into clouds" width="320" height="320" />
+	<img
+		src="/images/lessons.png"
+		alt="Person riding rocket into clouds"
+		width="320"
+		height="320"
+		loading="lazy"
+	/>
 	<div>
 		<h1 class="heading-level-1">Appwrite 101</h1>
 		<p class="max-w-3xl">A Great way to start learning how to use Appwrite.</p>

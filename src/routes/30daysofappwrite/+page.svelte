@@ -12,6 +12,7 @@
 		alt="Person riding rocket into clouds"
 		width="320"
 		height="320"
+		loading="lazy"
 	/>
 	<h1 class="heading-level-1">30 Days of Appwrite</h1>
 	<p class="max-w-3xl">
