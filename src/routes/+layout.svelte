@@ -11,7 +11,7 @@
 	import { afterUpdate } from 'svelte';
 
 	/** @type {import('$lib/types/index').Post} */
-	let content = $page?.data?.content;
+	content = $page?.data?.post;
 	let title = content?.title || `Appwrite.io`;
 	let description =
 		content?.description ||
@@ -35,7 +35,7 @@
 		setMeta();
 	});
 	const setMeta = () => {
-		content = $page?.data?.content;
+		content = $page?.data?.post;
 		title = content?.title || `Appwrite.io`;
 		description =
 			content?.description ||
