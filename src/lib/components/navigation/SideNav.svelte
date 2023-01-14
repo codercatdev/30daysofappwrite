@@ -14,6 +14,12 @@
 						</a>
 					</li>
 					<li class="drop-list-item">
+						<a class="drop-button" class:is-selected={$page.route.id === '/guides'} href="/guides">
+							<span class="icon-book-open" aria-hidden="true" />
+							<span class="text">Guides</span>
+						</a>
+					</li>
+					<li class="drop-list-item">
 						<a
 							class="drop-button"
 							class:is-selected={$page.route.id === '/appwrite-101'}

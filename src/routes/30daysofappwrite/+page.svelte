@@ -1,4 +1,6 @@
 <script>
+	import { contentTypes } from '$lib/types';
+
 	/** @type {import('./$types').PageData} */
 	export let data;
 	const { posts } = data;
@@ -40,10 +42,10 @@
 			/>
 			<ul class="list">
 				{#each posts as post}
-					<a class="" href={`/30daysofappwrite/${post.slug}`}>
+					<a class="" href={`/${contentTypes._30daysofappwrite}/${post.slug}`}>
 						<li class="list-item">
 							<div
-								class="bg-green-500 flex items-center justify-center flex-shrink-0 w-14 h-14 border-8 border-r-8 rounded-full text-white border-white"
+								class="flex items-center justify-center flex-shrink-0 text-white bg-green-500 border-8 border-r-8 border-white rounded-full w-14 h-14"
 								data-v-71bf8190=""
 							>
 								{post.weight}

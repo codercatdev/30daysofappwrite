@@ -27,8 +27,8 @@
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<span class="icon-github social" /></a
-							>
+								<span class="icon-github social" />
+							</a>
 						{/if}
 						{#if author?.twitter_username}
 							<a
@@ -36,13 +36,13 @@
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<span class="icon-twitter social" /></a
-							>
+								<span class="icon-twitter social" />
+							</a>
 						{/if}
 						{#if author?.website_url}
 							<a href={`${author.website_url}`} target="_blank" rel="noopener noreferrer">
-								<span class="icon-globe-alt social" /></a
-							>
+								<span class="icon-globe-alt social" />
+							</a>
 						{/if}
 					</div>
 				</div>

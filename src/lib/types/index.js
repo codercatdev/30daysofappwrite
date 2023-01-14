@@ -5,7 +5,8 @@
  */
 export const contentTypes = {
 	_30daysofappwrite: '30daysofappwrite',
-	appwrite101: 'appwrite-101'
+	appwrite101: 'appwrite-101',
+	guides: 'guides'
 };
 
 /**
