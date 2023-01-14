@@ -35,7 +35,7 @@
 		setMeta();
 	});
 	const setMeta = () => {
-		content = $page?.data?.post;
+		content = $page?.data?.content;
 		title = content?.title || `Appwrite.io`;
 		description =
 			content?.description ||
