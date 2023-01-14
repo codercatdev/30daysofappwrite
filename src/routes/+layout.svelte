@@ -8,26 +8,17 @@
 	import Footer from '$lib/components/layout/Footer.svelte';
 
 	import { MetaTags } from 'svelte-meta-tags';
-
-	// TODO: https://github.com/sveltejs/kit/issues/2733
-	import { afterNavigate } from '$app/navigation';
-	/** @type {HTMLElement} */
-	let contentElem;
-	afterNavigate(() => {
-		setTimeout(() => {
-			contentElem.scrollTo(0, 0);
-		}, 0);
-	});
+	import { afterUpdate } from 'svelte';
 
 	/** @type {import('$lib/types/index').Post} */
-	const content = $page?.data?.content;
-	const title = content?.title || `Appwrite.io`;
-	const description =
+	let content = $page?.data?.content;
+	let title = content?.title || `Appwrite.io`;
+	let description =
 		content?.description ||
 		'Secure Open Source Backend Server for Web, Mobile & Flutter Developers';
-	const url = `https://guides.appwrite.io/${content?.slug || ''}`;
+	let url = `https://guides.appwrite.io/${content?.slug || ''}`;
 
-	const images = content?.cover_image
+	let images = content?.cover_image
 		? [
 				{
 					url: content?.cover_image,
@@ -40,6 +31,31 @@
 					alt: 'Appwrite Logo'
 				}
 		  ];
+	afterUpdate(() => {
+		setMeta();
+	});
+	const setMeta = () => {
+		content = $page?.data?.content;
+		title = content?.title || `Appwrite.io`;
+		description =
+			content?.description ||
+			'Secure Open Source Backend Server for Web, Mobile & Flutter Developers';
+		url = `https://guides.appwrite.io/${content?.slug || ''}`;
+
+		images = content?.cover_image
+			? [
+					{
+						url: content?.cover_image,
+						alt: content?.title || 'Cover Image'
+					}
+			  ]
+			: [
+					{
+						url: 'https://appwrite.io/images/logo.png',
+						alt: 'Appwrite Logo'
+					}
+			  ];
+	};
 </script>
 
 <MetaTags
