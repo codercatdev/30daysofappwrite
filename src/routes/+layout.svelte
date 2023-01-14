@@ -8,7 +8,7 @@
 	import Footer from '$lib/components/layout/Footer.svelte';
 
 	import { MetaTags } from 'svelte-meta-tags';
-	import { afterUpdate } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 
 	/** @type {import('$lib/types/index').Post} */
 	let content = $page?.data?.post;
@@ -31,6 +31,9 @@
 					alt: 'Appwrite Logo'
 				}
 		  ];
+	onMount(() => {
+		setMeta();
+	});
 	afterUpdate(() => {
 		setMeta();
 	});
