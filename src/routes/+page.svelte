@@ -1,4 +1,15 @@
 <section class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] sm:gap-10 m-8">
+	<a href="/guides">
+		<div class="card">
+			<div class="flex flex-col items-center">
+				<h1>Guides</h1>
+				<p>Product Guides</p>
+				<div class="flex">
+					<span class="icon-book-open huge" />
+				</div>
+			</div>
+		</div>
+	</a>
 	<a href="/30daysofappwrite">
 		<div class="card">
 			<div class="flex flex-col items-center">
@@ -22,3 +33,9 @@
 		</div>
 	</a>
 </section>
+
+<style>
+	.huge {
+		font-size: 200px;
+	}
+</style>
