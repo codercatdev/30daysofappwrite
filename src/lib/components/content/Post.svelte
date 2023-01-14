@@ -4,9 +4,12 @@
 	import Authors from '$lib/components/content/Authors.svelte';
 
 	/** @typedef {import('$lib/types/index').Post} Post */
-	/** @type {{post: Post, prev:Post, next:Post}}*/
-	export let data;
-	const { post, prev, next } = data;
+	/** @type {Post}*/
+	export let post;
+	/** @type {Post}*/
+	export let prev;
+	/** @type {Post}*/
+	export let next;
 </script>
 
 {#if !post}
@@ -37,7 +40,6 @@
 			<div class="prose dark:prose-invert lg:prose-xl xl:prose-2xl">
 				<svelte:component this={post?.body} />
 			</div>
-			<!-- TODO: Fix State issue -->
 			<div class="flex gap-2 justify-center">
 				{#if prev}
 					<a class="button" href={prev?.slug}>Previous</a>

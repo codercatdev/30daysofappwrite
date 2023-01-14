@@ -7,5 +7,5 @@
 {#if !data?.post}
 	How did you get here?
 {:else}
-	<Post {data} />
+	<Post post={data.post} prev={data.prev} next={data.next} />
 {/if}
